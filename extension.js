@@ -32,20 +32,14 @@ const 8601DateIndicator=new Lang.Class(
 
    _init: function()
    {
-      this.parent(0.0,"8601Date Indicator",false);
+      this.parent(0.0,"8601 Date Indicator",false);
 
       this.buttonText=new St.Label({
-         name: "8601date-indicator-buttonText",
+         name: "8601-date-indicator-buttonText",
          y_align: Clutter.ActorAlign.CENTER
       });
       this.actor.add_actor(this.buttonText);
 
-      /* Find starting date and */
-      let timestamp=this._get_timestamps()[0];
-      let date=new Date();
-      date.setTime(date-timestamp*1000)
-      this._started=date.toLocaleString();
-      /* and prepare menu */
       this._mymenutitle=new PopupMenu.PopupMenuItem(this._started, { reactive: false });
       this.menu.addMenuItem(this._mymenutitle);
 
@@ -56,11 +50,6 @@ const 8601DateIndicator=new Lang.Class(
       this._change_timeoutloop=true;
       this._timeout=null;
       this._refresh();
-   },
-
-   _get_timestamps: function()
-   {
-      return Shell.get_file_contents_utf8_sync('/proc/8601date').split(" ");
    },
 
    _refresh: function()
@@ -94,38 +83,7 @@ const 8601DateIndicator=new Lang.Class(
 
    _update_8601date: function()
    {
-      let timestamps_s=this._get_timestamps()[0];
-      let minutes=Math.floor((timestamps_s/60)%60);
-      let hours=Math.floor((timestamps_s/3600)%24);
-      let days=Math.floor((timestamps_s/86400)%365);
-      let years=Math.floor(timestamps_s/31536000);
-      let label_text="?";
-      if(years>0) {
-         label_text=years+"Y"+days+"D";
-         /* Come back next year */
-         this._set_refresh_rate(31536000-(timestamps_s)%31536000);
-      }
-      else if(days>99) {
-         label_text=days+"D";
-         /* Come back next day */
-         this._set_refresh_rate(86400-(timestamps_s%86400))
-      }
-      else if(days>0) {
-         if(hours < 10) {
-            hours="0" + hours;
-         }
-         label_text=days+"D"+hours+"h";
-         /* Come back next hour */
-         this._set_refresh_rate(3600-(timestamps_s%3600))
-      }
-      else {
-         if(minutes < 10) {
-            minutes="0" + minutes;
-         }
-         label_text=hours+":"+minutes;
-         /* Come back next minute */
-         this._set_refresh_rate(60-(timestamps_s%60));
-      }
+      let label_text=new Date().toJSON();
       return label_text;
    },
 
@@ -146,7 +104,7 @@ function enable()
 {
    _8601date_indicator_object=new 8601DateIndicator;
    if(_8601date_indicator_object) {
-      Main.panel.addToStatusArea('8601date-indicator',_8601date_indicator_object);
+      Main.panel.addToStatusArea('8601-date-indicator',_8601date_indicator_object);
    }
 }
 
