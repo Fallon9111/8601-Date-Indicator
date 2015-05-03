@@ -116,4 +116,3 @@ function disable()
       _8601date_indicator_object=null;
    }
 }
-
