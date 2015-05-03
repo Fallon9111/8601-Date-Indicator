@@ -8,8 +8,8 @@
       "3.14",
       "3.16"
    ],
-   "uuid": "uptime-indicator@gniourfgniourf.gmail.com",
-   "name": "Uptime Indicator",
-   "description": "Indicates uptime in status area. When clicked, a popup menu indicates the date when the system was started.",
-   "url": "https://github.com/Gniourf/Uptime-Indicator"
+   "uuid": "8601-date-indicator@j.fallon1997.gmail.com",
+   "name": "8601 Date Indicator",
+   "description": "Displays the ISO 8601 date (YYYY-MM-DD).",
+   "url": "https://github.com/Fallon9111/8601-Date-Indicator"
 }
