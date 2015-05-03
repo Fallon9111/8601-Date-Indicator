@@ -18,11 +18,11 @@ const Lang=imports.lang;
 const PopupMenu=imports.ui.popupMenu;
 const Clutter=imports.gi.Clutter;
 
-let _uptime_indicator_object=null;
+let _8601date_indicator_object=null;
 
-const UptimeIndicator=new Lang.Class(
+const 8601DateIndicator=new Lang.Class(
 {
-   Name: 'UptimeIndicator.UptimeIndicator',
+   Name: '8601DateIndicator.8601DateIndicator',
    Extends: PanelMenu.Button,
    buttonText: null,
    _timeout: null,
@@ -32,10 +32,10 @@ const UptimeIndicator=new Lang.Class(
 
    _init: function()
    {
-      this.parent(0.0,"Uptime Indicator",false);
+      this.parent(0.0,"8601Date Indicator",false);
 
       this.buttonText=new St.Label({
-         name: "uptime-indicator-buttonText",
+         name: "8601date-indicator-buttonText",
          y_align: Clutter.ActorAlign.CENTER
       });
       this.actor.add_actor(this.buttonText);
@@ -60,12 +60,12 @@ const UptimeIndicator=new Lang.Class(
 
    _get_timestamps: function()
    {
-      return Shell.get_file_contents_utf8_sync('/proc/uptime').split(" ");
+      return Shell.get_file_contents_utf8_sync('/proc/8601date').split(" ");
    },
 
    _refresh: function()
    {
-      let text=this._update_uptime();
+      let text=this._update_8601date();
       this.buttonText.set_text(text)
       if(this._change_timeoutloop) {
          this._remove_timeout();
@@ -92,7 +92,7 @@ const UptimeIndicator=new Lang.Class(
       }
    },
 
-   _update_uptime: function()
+   _update_8601date: function()
    {
       let timestamps_s=this._get_timestamps()[0];
       let minutes=Math.floor((timestamps_s/60)%60);
@@ -144,18 +144,18 @@ function init(metadata)
 // Enable function
 function enable()
 {
-   _uptime_indicator_object=new UptimeIndicator;
-   if(_uptime_indicator_object) {
-      Main.panel.addToStatusArea('uptime-indicator',_uptime_indicator_object);
+   _8601date_indicator_object=new 8601DateIndicator;
+   if(_8601date_indicator_object) {
+      Main.panel.addToStatusArea('8601date-indicator',_8601date_indicator_object);
    }
 }
 
 // Disable function
 function disable()
 {
-   if(_uptime_indicator_object) {
-      _uptime_indicator_object.destroy();
-      _uptime_indicator_object=null;
+   if(_8601date_indicator_object) {
+      _8601date_indicator_object.destroy();
+      _8601date_indicator_object=null;
    }
 }
 
