@@ -1,15 +1,12 @@
-/* Uptime Indicator
+/* 8601 Date Indicator
  *
- * gnome-shell extension that indicates uptime in status area.
- * Loosely based on lapi's Uptime extension:
- *    https://extensions.gnome.org/extension/312/uptime/
+ * gnome-shell extension that indicates ISO 8601 Date in status area.
+ * Based on Gniourf's Uptime extension as original code template:
+ *    https://extensions.gnome.org/extension/508/uptime-indicator/
  *
- * Author: Gniourf, gniourfgniourf@gmail.com
- * Date: 2012-20-10
+ * Author: James Fallon, j.fallon1997@gmail.com
+ * Date: 2015-05-03
  *
- * Changes:
- *    2014-05-10: moved style to css and added Clutter to vertically align the
- *    St.Label (thanks to varunoberoi)
  */
 
 const PanelMenu=imports.ui.panelMenu;
