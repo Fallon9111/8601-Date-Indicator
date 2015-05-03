@@ -1,4 +1,4 @@
-destdir=$(HOME)/.local/share/gnome-shell/extensions/uptime-indicator@gniourfgniourf.gmail.com
+destdir=$(HOME)/.local/share/gnome-shell/extensions/8601-date-indicator@j.fallon1997.gmail.com
 filestoinstall=AUTHORS COPYING extension.js metadata.json stylesheet.css
 
 all:
@@ -16,8 +16,8 @@ uninstall:
 	@-rm -rfv "$(destdir)"
 
 dist-zip:
-	@zip -jv uptime-indicator $(filestoinstall)
+	@zip -jv 8601-date-indicator $(filestoinstall)
 
 clean:
-	@-rm -fv uptime-indicator.zip
+	@-rm -fv 8601-date-indicator.zip
 
